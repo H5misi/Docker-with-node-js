@@ -1,0 +1,12 @@
+# version: 'version'
+
+services:
+  node-app:
+    build: 
+      context: .
+      args:
+        - NODE_ENV=production
+    container_name: express-node-app-container
+    environment:
+      - NODE_ENV=production
+    command: npm install
