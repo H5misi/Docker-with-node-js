@@ -4,9 +4,9 @@ services:
   node-app:
     build: 
       context: .
-      args:
-        - NODE_ENV=production
-    container_name: express-node-app-container
+      target: production
+      # args:
+      #   - NODE_ENV=production
     environment:
       - NODE_ENV=production
-    command: npm install
+    command: npm start

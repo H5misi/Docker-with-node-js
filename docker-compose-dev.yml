@@ -4,9 +4,9 @@ services:
   node-app:
     build: 
       context: .
-      args:
-        - NODE_ENV=development
-    container_name: express-node-app-container
+      target: development
+      # args:
+      #   - NODE_ENV=development
     volumes:
       - ./src:/app/src:ro
     environment:
