@@ -13,9 +13,9 @@ const DB_HOST = 'mongo'; //host name must be same as service name in docker-comp
 
 const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
 mongoose
-    .connect(URI)
-    .then(() => console.log('connected'))
-    .catch((err) => console.log('failed to connect: ' + err));
+	.connect(URI)
+	.then(() => console.log('connected'))
+	.catch((err) => console.log('failed to connect: ' + err));
 
 app.get('/', (req, res) => res.send('<h1>Hello! dev<h1>'));
 
