@@ -9,6 +9,7 @@ services:
       - ./.env
     depends_on:
       - mongo
+      - redis
 
   mongo:
     image: mongo
@@ -34,6 +35,15 @@ services:
 
   redis:
     image: redis
+
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - node-app
 
 
 
