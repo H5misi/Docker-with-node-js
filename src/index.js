@@ -1,5 +1,6 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
+const { Client } = require('pg');
 const redis = require('redis');
 
 // init app
@@ -18,17 +19,32 @@ redisClient.on('error', (err) => console.log('Redis Client Error', err));
 redisClient.on('connect', () => console.log('Connected to Redis'));
 redisClient.connect();
 
-// connect to DB
+// connect to PostgreSQL
 const DB_USER = 'root';
 const DB_PASSWORD = 'example';
-const DB_PORT = 27017;
-const DB_HOST = 'mongo'; //host name must be same as service name in docker-compose.yml
+const DB_PORT = 5432;
+const DB_HOST = 'postgres'; //host name must be same as service name in docker-compose.yml
 
-const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
-mongoose
-	.connect(URI)
-	.then(() => console.log('connected to Mongoose'))
-	.catch((err) => console.log('failed to connect to Mongoose: ' + err));
+const URI = `postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
+const postgresClient = new Client({
+	connectionString: URI,
+});
+postgresClient
+	.connect()
+	.then(() => console.log('connected to PostgreSQL db'))
+	.catch((err) => console.log('failed to connect to PostgreSQL db: ' + err));
+
+// // connect to MongoDB
+// const DB_USER = 'root';
+// const DB_PASSWORD = 'example';
+// const DB_PORT = 27017;
+// const DB_HOST = 'mongo'; //host name must be same as service name in docker-compose.yml
+
+// const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
+// mongoose
+// 	.connect(URI)
+// 	.then(() => console.log('connected to Mongoose'))
+// 	.catch((err) => console.log('failed to connect to Mongoose: ' + err));
 
 //
 app.get('/', (req, res) => {
