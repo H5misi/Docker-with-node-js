@@ -12,14 +12,14 @@ services:
       - redis
       - postgres
 
-  # mongo:
-  #   image: mongo
-  #   restart: always
-  #   volumes:
-  #     - mongo-db:/data/db
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: example
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongo-db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
   # mongo-express:
   #   image: mongo-express
@@ -46,18 +46,18 @@ services:
     depends_on:
       - node-app
 
-  postgres:
-    image: postgres
-    restart: always
-    volumes:
-      - postgres-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: example
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   volumes:
+  #     - postgres-db:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: example
       
 
 
 
 volumes:
   mongo-db:
-  postgres-db:
+  # postgres-db:
