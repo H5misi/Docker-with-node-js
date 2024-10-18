@@ -8,9 +8,9 @@ services:
     env_file:
       - ./.env
     depends_on:
-      # - mongo
+      - mongo
       - redis
-      - postgres
+      # - postgres
 
   mongo:
     image: mongo
