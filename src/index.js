@@ -2,6 +2,7 @@ const express = require('express');
 const { default: mongoose } = require('mongoose');
 // const { Client } = require('pg');
 const redis = require('redis');
+const os = require('os');
 
 // init app
 const port = process.env.port || 4000;
@@ -48,6 +49,7 @@ mongoose
 
 //
 app.get('/', (req, res) => {
+	console.log(`traffic from ${os.hostname}`)
 	redisClient.set('product', 'Products...  :D');
 	res.send('<h1>Hello!<h1>');
 });

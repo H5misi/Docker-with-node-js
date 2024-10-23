@@ -1,7 +1,6 @@
 
 services:
   node-app:
-    container_name: express-node-app-container
     image: h5misi/docker-with-node-js
     env_file:
       - ./.env
